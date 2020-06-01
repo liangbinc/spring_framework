@@ -184,7 +184,7 @@ class ConfigurationClassParser {
 						"Failed to parse configuration class [" + bd.getBeanClassName() + "]", ex);
 			}
 		}
-
+		//处理延迟import
 		processDeferredImportSelectors();
 	}
 
@@ -251,7 +251,7 @@ class ConfigurationClassParser {
 
 	/**
 	 * Apply processing and build a complete {@link ConfigurationClass} by reading the
-	 * annotations, members and methods from the source class. This method can be called
+	 * annotations,j members and methods from the source class. This method can be called
 	 * multiple times as relevant sources are discovered.
 	 * @param configClass the configuration class being build
 	 * @param sourceClass a source class
@@ -300,6 +300,9 @@ class ConfigurationClassParser {
 		}
 
 		// Process any @Import annotations
+		//ImportSelector
+		//ImportBeanDefinitionRegistrar
+		//normal 普通的类（程序员创建的）
 		processImports(configClass, sourceClass, getImports(sourceClass), true);
 
 		// Process any @ImportResource annotations
